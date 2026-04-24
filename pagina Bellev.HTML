@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Bellev</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Maiden+Orange&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CONFIGURACIÓN GENERAL --- */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            background-color: #2B0A0A; 
+            font-family: sans-serif; 
+        }
+
+        /* --- SECCIÓN 1: BANNER ANIMADO Y CAPAS --- */
+        .contenedor-web {
+            position: relative;
+            width: 100%;
+            overflow: hidden; 
+            margin-bottom: 100px; 
+        }
+
+        .capa-1 {
+            position: relative; 
+            width: 100%;
+            height: auto;
+            display: block;
+            z-index: 1;
+            transition: opacity 0.4s ease;
+        }
+
+        .capa-absoluta {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            transition: opacity 0.4s ease;
+        }
+
+        .capa-2 { z-index: 2; }
+        .capa-3-parpadeo { z-index: 3; animation: parpadeoExacto 10s infinite; }
+        .capa-4-letras { z-index: 4; animation: movimientoLetras 7s ease-in-out infinite; }
+        .capa-5 { z-index: 5; pointer-events: none; }
+        
+        .contenedor-nubes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%; 
+            height: 100%;
+            z-index: 6;
+            pointer-events: none;
+            display: flex;
+            animation: nubesInfinitas 40s linear infinite; 
+        }
+        
+        .nubes-img {
+            width: 50%; 
+            height: 100%;
+            object-fit: cover; 
+        }
+
+        @keyframes parpadeoExacto {
+            0%, 30% { opacity: 0; }
+            50%, 80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        @keyframes movimientoLetras {
+            0%, 100% { transform: translateX(0px); }
+            50% { transform: translateX(12px); }
+        }
+        @keyframes nubesInfinitas {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .opacidad-baja {
+            opacity: 0.65 !important;
+        }
+
+        /* --- SECCIÓN 2: CONTACTO Y BOTONES --- */
+        .seccion-inferior {
+            position: relative; 
+            width: 100%;
+            background: linear-gradient(180deg, #2B0A0A 0%, #5E0808 100%); 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 0 100px 0; 
+            margin: 0; 
+            min-height: 50vh; 
+            overflow: hidden; 
+        }
+
+        .contenedor-botones, .fila-social, #link-casita {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* --- FONDO ANIMADO DE 4 SEGUNDOS BLANCO --- */
+        .fondo-animado-abajo {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 65%; 
+            object-fit: cover;
+            object-position: bottom center;
+            z-index: 1; 
+            pointer-events: none; 
+            animation: efectoBlanco 12s infinite; 
+        }
+
+        @keyframes efectoBlanco {
+            0% { filter: brightness(0) invert(0); opacity: 0; } 
+            15% { filter: brightness(0) invert(0); opacity: 1; } 
+            30% { filter: brightness(0) invert(1) drop-shadow(0 0 15px rgba(255,255,255,0.8)); opacity: 1; } 
+            65% { filter: brightness(0) invert(1) drop-shadow(0 0 15px rgba(255,255,255,0.8)); opacity: 1; } 
+            80% { filter: brightness(0) invert(0); opacity: 1; } 
+            100% { filter: brightness(0) invert(0); opacity: 0; } 
+        }
+
+        /* --- CONTENEDOR DE BOTONES --- */
+        .contenedor-botones {
+            display: flex;
+            flex-direction: column;
+            gap: 25px; 
+            width: 100%;
+            align-items: center;
+        }
+
+        .shift-izq { transform: translateX(-15px); }
+        .shift-der { transform: translateX(15px); }
+
+        .boton-rojo {
+            background-color: #FF3B30; 
+            color: #FFFFFF;
+            border: none;
+            border-radius: 30px; 
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            width: 80%;
+            max-width: 300px;
+            cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.3); 
+            font-family: 'Maiden Orange', cursive;
+            letter-spacing: 1px;
+            transition: transform 0.2s ease;
+        }
+
+        /* --- FILA SOCIAL --- */
+        .fila-social {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 60px; 
+            margin-top: 120px; 
+            margin-bottom: 120px; 
+        }
+
+        .bloque-social {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .bloque-social:active {
+            transform: scale(0.9);
+        }
+
+        .icono-social {
+            width: 55px; 
+            height: 55px;
+            object-fit: contain; 
+            margin-bottom: 10px;
+        }
+
+        .texto-social {
+            color: #FFFFFF;
+            font-size: 1.2rem;
+            margin: 0;
+            text-align: center;
+            letter-spacing: 2px;
+            font-family: 'Maiden Orange', cursive;
+        }
+
+        .animar-pulso .icono-social { animation: efectoPulso 0.4s ease-out; }
+
+        @keyframes efectoPulso {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        .animar-flash .icono-social { animation: flashCamara 2s ease-out; }
+
+        @keyframes flashCamara {
+            0% { transform: scale(1); filter: brightness(1) drop-shadow(0 0 0 white); }
+            10% { transform: scale(1.6); filter: brightness(2) drop-shadow(0 0 50px white); }
+            100% { transform: scale(1); filter: brightness(1) drop-shadow(0 0 10px white); }
+        }
+
+        /* --- ESTILO: BOTÓN CASITA --- */
+        .btn-casita {
+            width: 80px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.6));
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="escena-principal" class="contenedor-web">
+        <img src="FONDO GRIS PAGINA 1ra capa.png" class="capa-1">
+        <img src="Bellev Personaje 2 capa.png" class="capa-absoluta capa-2">
+        <img src="parpadea png 3 capa.png" class="capa-absoluta capa-3-parpadeo">
+        <img src="Bellev letras 4 Capa.png" class="capa-absoluta capa-4-letras">
+        <img src="pasto 5 capa.png" class="capa-absoluta capa-5">
+        
+        <div class="contenedor-nubes">
+            <img src="nubes 6 capa.png" class="nubes-img">
+            <img src="nubes 6 capa.png" class="nubes-img"> 
+        </div>
+    </div>
+
+    <div class="seccion-inferior">
+        
+        <img src="para portfolio.png" class="fondo-animado-abajo" alt="Fondo Decorativo">
+
+        <div class="contenedor-botones">
+            <button class="boton-rojo btn-nav shift-izq" data-url="habilidades.html">HABILIDADES</button>
+            <button class="boton-rojo btn-nav shift-der" data-url="acerca.html">ACERCA DE MI</button>
+            <button class="boton-rojo btn-nav shift-izq" data-url="proyectosPhotoshop.html">PROGRAMAS</button>
+        </div>
+
+        <div class="fila-social">
+            <div class="bloque-social" id="btn-whatsapp">
+                <img src="phone white.png" class="icono-social" id="img-phone" alt="Teléfono">
+                <h3 class="texto-social">TEL</h3>
+            </div>
+            
+            <div class="bloque-social" id="btn-insta">
+                <img src="Instagram-White-PNG-File.png" class="icono-social" id="img-insta" alt="Instagram">
+                <h3 class="texto-social">IG</h3>
+            </div>
+        </div>
+
+        <a href="../disenadores.html" id="link-casita">
+            <img src="casita boton.png" alt="Volver a Diseñadores" class="btn-casita">
+        </a>
+    </div>
+
+    <audio id="sonido-trueno" src="sonido trueno.m4a"></audio>
+    <audio id="sonido-phone" src="Phone sound.m4a"></audio>
+    <audio id="sonido-botones" src="Tp Valorant Sound Effect.m4a"></audio>
+    <audio id="sonido-camara" src="CameraSHootsounf.m4a"></audio>
+    <audio id="sonido-re" src="sonido resident evil boton volver.m4a"></audio>
+
+    <script>
+        // --- EASTER EGG (3 CLICS = YOUTUBE) Y TRUENOS ---
+        const escena = document.getElementById('escena-principal');
+        const sonidoTrueno = document.getElementById('sonido-trueno');
+        const capasParaOpacidad = document.querySelectorAll('.capa-1, .capa-2, .capa-4-letras');
+        
+        let clicsTrueno = 0;
+
+        escena.addEventListener('click', () => {
+            clicsTrueno++; 
+            
+            sonidoTrueno.currentTime = 0; 
+            sonidoTrueno.play();
+            capasParaOpacidad.forEach(capa => {
+                capa.classList.add('opacidad-baja');
+            });
+            setTimeout(() => {
+                capasParaOpacidad.forEach(capa => {
+                    capa.classList.remove('opacidad-baja');
+                });
+            }, 400); 
+
+            if (clicsTrueno === 3) {
+                clicsTrueno = 0; 
+                setTimeout(() => {
+                    window.open("https://www.youtube.com/results?search_query=Bellev", "_blank");
+                }, 500); 
+            }
+        });
+
+        // --- WHATSAPP ---
+        const btnWhatsapp = document.getElementById('btn-whatsapp');
+        const sonidoPhone = document.getElementById('sonido-phone');
+
+        btnWhatsapp.addEventListener('click', () => {
+            sonidoPhone.currentTime = 0;
+            sonidoPhone.play();
+            btnWhatsapp.classList.add('animar-pulso');
+            setTimeout(() => {
+                btnWhatsapp.classList.remove('animar-pulso');
+            }, 400);
+            setTimeout(() => {
+                window.open("https://wa.me/5215579912539", "_blank");
+            }, 300);
+        });
+
+        // --- INSTAGRAM ---
+        const btnInsta = document.getElementById('btn-insta');
+        const sonidoCamara = document.getElementById('sonido-camara');
+
+        btnInsta.addEventListener('click', () => {
+            sonidoCamara.currentTime = 0;
+            sonidoCamara.play();
+            
+            btnInsta.classList.add('animar-flash');
+
+            setTimeout(() => {
+                btnInsta.classList.remove('animar-flash');
+                window.open("https://www.instagram.com/un.sol.mas/", "_blank");
+            }, 2000); 
+        });
+
+        // --- BOTÓN CASITA ---
+        const linkCasita = document.getElementById('link-casita');
+        const btnCasitaImg = linkCasita.querySelector('.btn-casita');
+        const sonidoRe = document.getElementById('sonido-re');
+
+        linkCasita.addEventListener('click', function(e) {
+            e.preventDefault(); 
+            
+            const destino = this.href;
+            
+            sonidoRe.currentTime = 0;
+            sonidoRe.play().catch(error => console.log("Error audio:", error));
+            
+            btnCasitaImg.style.transition = "transform 0.4s ease-out, filter 0.4s ease-out";
+            btnCasitaImg.style.transform = "scale(1.25)";
+            btnCasitaImg.style.filter = "drop-shadow(0px 0px 20px rgba(255, 255, 255, 0.9))";
+
+            setTimeout(() => {
+                window.location.href = destino; 
+            }, 1200); 
+        });
+
+        // --- BOTONES DE NAVEGACIÓN ---
+        const botonesNav = document.querySelectorAll('.btn-nav');
+        const sonidoBotones = document.getElementById('sonido-botones');
+
+        botonesNav.forEach(boton => {
+            boton.addEventListener('click', function() {
+                sonidoBotones.currentTime = 0;
+                sonidoBotones.play();
+                
+                const transformOriginal = this.style.transform;
+                this.style.transform = "scale(1.15)";
+                
+                setTimeout(() => {
+                    this.style.transform = transformOriginal;
+                }, 400);
+                
+                setTimeout(() => {
+                    const destino = this.getAttribute('data-url');
+                    window.location.href = destino; 
+                }, 1500);
+            });
+        });
+    </script>
+
+</body>
+</html>

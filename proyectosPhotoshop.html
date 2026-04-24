@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photoshop | Proyectos</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Maiden+Orange&display=swap" rel="stylesheet">
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            background-color: #1a1a1a; /* Fondo oscuro tipo estudio */
+            background-image: radial-gradient(circle, #2b0a0a 0%, #000000 100%);
+            font-family: 'Maiden Orange', cursive;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: white;
+        }
+
+        /* --- TÍTULO --- */
+        h1 {
+            font-size: 4rem;
+            color: #ff3b30;
+            text-shadow: 0 0 15px #ff3b30;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            letter-spacing: 4px;
+        }
+
+        /* --- CONTENEDOR DE PROYECTOS (VIDEOS) --- */
+        .seccion-proyectos {
+            width: 90%;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Dos columnas para los videos */
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .proyecto-card {
+            background: rgba(40, 40, 40, 0.8);
+            border: 2px solid #ff3b30;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 0 20px rgba(255, 59, 48, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .proyecto-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px rgba(255, 59, 48, 0.5);
+        }
+
+        .video-wrapper {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .info-proyecto h2 {
+            font-size: 1.8rem;
+            margin: 0 0 10px 0;
+            color: #ffffff;
+        }
+
+        .info-proyecto p {
+            font-family: sans-serif; /* Texto más legible */
+            font-size: 1rem;
+            color: #cccccc;
+            line-height: 1.4;
+        }
+
+        /* --- NAVEGACIÓN INFERIOR --- */
+        .navegacion-inferior {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding-bottom: 50px;
+        }
+
+        /* BOTÓN VOLVER (Resident Evil) */
+        .btn-volver-re {
+            background-color: #000;
+            color: #ff0000;
+            border: 3px solid #ff0000;
+            padding: 12px 45px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 0 15px #5e0000;
+            animation: parpadeoTerror 1s infinite;
+        }
+
+        @keyframes parpadeoTerror {
+            0%, 100% { box-shadow: 0 0 10px #ff0000; opacity: 1; }
+            50% { box-shadow: 0 0 35px #ff0000; opacity: 0.7; }
+        }
+
+        /* CASITA (Valorant TP) */
+        .casita-img {
+            width: 80px;
+            cursor: pointer;
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.8));
+            transition: 0.3s;
+        }
+
+        .casita-img:active {
+            transform: scale(1.2);
+            filter: brightness(1.5) drop-shadow(0 0 20px white);
+        }
+
+        /* --- RESPONSIVO --- */
+        @media (max-width: 768px) {
+            .seccion-proyectos {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>PHOTOSHOP</h1>
+
+    <div class="seccion-proyectos">
+        
+        <div class="proyecto-card">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/eL_IqWrAODM" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="info-proyecto">
+                <h2>SALTO ROTOSCOPIA</h2>
+                <p>Estudio de movimiento en dos vistas (frente y lateral) utilizando pinceles con textura de carboncillo para un acabado artístico.</p>
+            </div>
+        </div>
+
+        <div class="proyecto-card">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_LA_MENTIRA" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="info-proyecto">
+                <h2>LA MENTIRA</h2>
+                <p>Animación atmosférica de personaje y fondo. Estética oscura inspirada en técnicas tradicionales de dibujo manual.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="navegacion-inferior">
+        <a href="../programas Diseñador2.html" class="btn-volver-re" id="btn-volver">VOLVER</a>
+
+        <a href="../../index.html" id="btn-casita">
+            <img src="casita boton.png" class="casita-img" alt="Inicio">
+        </a>
+    </div>
+
+    <audio id="tp-sound" src="Tp Valorant Sound Effect.m4a"></audio>
+    <audio id="re-sound" src="sonido resident evil boton volver.m4a"></audio>
+
+    <script>
+        const btnCasita = document.getElementById('btn-casita');
+        const tpSound = document.getElementById('tp-sound');
+        const btnVolver = document.getElementById('btn-volver');
+        const reSound = document.getElementById('re-sound');
+
+        // Navegación Casita (Sonido Valorant)
+        btnCasita.addEventListener('click', function(e) {
+            e.preventDefault();
+            tpSound.currentTime = 0;
+            tpSound.play();
+            setTimeout(() => {
+                window.location.href = this.href;
+            }, 1200);
+        });
+
+        // Navegación Volver (Sonido Resident Evil)
+        btnVolver.addEventListener('click', function(e) {
+            e.preventDefault();
+            reSound.currentTime = 0;
+            reSound.play();
+            setTimeout(() => {
+                window.location.href = this.getAttribute('href');
+            }, 1200);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acerca de Mí | Bellev</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Maiden+Orange&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            background-color: #2B0A0A; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- FONDO ANIMADO --- */
+        .fondo-animado-boceto {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70%; 
+            object-fit: cover;
+            object-position: bottom;
+            z-index: 1;
+            pointer-events: none;
+            animation: efectoBlanco 12s infinite;
+        }
+
+        @keyframes efectoBlanco {
+            0% { filter: brightness(0) invert(0); opacity: 0; }
+            15% { filter: brightness(0) invert(0); opacity: 1; }
+            30% { filter: brightness(0) invert(1) drop-shadow(0 0 15px white); opacity: 1; }
+            65% { filter: brightness(0) invert(1) drop-shadow(0 0 15px white); opacity: 1; } 
+            80% { filter: brightness(0) invert(0); opacity: 1; }
+            100% { filter: brightness(0) invert(0); opacity: 0; }
+        }
+
+        /* --- CONTENIDO PRINCIPAL --- */
+        .main-content {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 900px;
+            text-align: center;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-family: 'Maiden Orange', cursive;
+            color: #FF3B30;
+            font-size: 4rem;
+            text-shadow: 0 0 15px #FF3B30;
+            margin-bottom: 40px;
+        }
+
+        /* --- RECTÁNGULO DE TEXTO TRANSPARENTE --- */
+        .bio-box {
+            background-color: rgba(20, 20, 20, 0.7); 
+            padding: 35px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 59, 48, 0.5); 
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        /* --- CONTENEDOR RYAN Y VOLVER (ESQUINA DERECHA) --- */
+        .ryan-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* Todo a la derecha */
+            padding-right: 20px;
+            margin-top: 10px;
+        }
+
+        .img-ryan {
+            /* AJUSTE: Imagen un 1/3 más chica (de 250px a 166px) */
+            width: 166px; 
+            height: auto;
+            filter: drop-shadow(0 0 15px black);
+            margin-top: 10px;
+        }
+
+        /* --- BOTONES --- */
+        .btn-volver-re {
+            background-color: #000;
+            color: #ff0000;
+            border: 3px solid #ff0000;
+            padding: 10px 30px;
+            font-size: 1.5rem;
+            font-family: 'Maiden Orange', cursive;
+            text-decoration: none;
+            animation: parpadeoTerror 1s infinite;
+            transition: 0.2s;
+            display: inline-block;
+        }
+
+        @keyframes parpadeoTerror {
+            0%, 100% { box-shadow: 0 0 5px #ff0000; opacity: 1; }
+            50% { box-shadow: 0 0 20px #ff0000; opacity: 0.8; }
+        }
+
+        .btn-volver-re:hover {
+            background-color: #ff0000;
+            color: #000;
+        }
+
+        /* --- CASITA (ESQUINA IZQUIERDA) --- */
+        .footer-fixed {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 20;
+        }
+
+        .casita-img {
+            width: 80px;
+            height: auto;
+            cursor: pointer;
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.9));
+            transition: 0.3s;
+        }
+
+        .casita-img:active {
+            transform: scale(1.2);
+            filter: brightness(1.5) drop-shadow(0 0 20px white);
+        }
+
+    </style>
+</head>
+<body>
+
+    <img src="Boceto%20fuerza.png" class="fondo-animado-boceto" alt="Fondo Animado">
+
+    <main class="main-content">
+        <h1>ACERCA DE MI</h1>
+        
+        <div class="bio-box">
+            Soy un artista digital, desarrollador y narrador visual apasionado por la creación de mundos complejos. Mi proceso abarca desde el nacimiento de una idea mediante la creación de historias y storyboards, hasta su ejecución en ilustración, animación y desarrollo en motores de videojuegos.
+            <br><br>
+            Me especializo en la construcción detallada de escenarios 3D, la integración de assets interactivos y la dirección de arte. Mi objetivo es dar vida a los proyectos combinando mis conocimientos en cinematografía, modelado, iluminación y diseño sonoro, creando así atmósferas inmersivas y experiencias que conecten con el espectador.
+        </div>
+
+        <div class="ryan-section">
+            <a href="pagina%20Bellev.html" class="btn-volver-re" id="btn-volver">VOLVER</a>
+            <img src="Ilustracion%20Ryan%20y%20Cuerpo%201.png" class="img-ryan" alt="Ilustración Ryan">
+        </div>
+    </main>
+
+    <div class="footer-fixed">
+        <a href="index.html" id="btn-casita">
+            <img src="casita%20boton.png" class="casita-img" alt="Inicio">
+        </a>
+    </div>
+
+    <audio id="tp-sound" src="Tp%20Valorant%20Sound%20Effect.m4a"></audio>
+    <audio id="re-sound" src="sonido%20resident%20evil%20boton%20volver.m4a"></audio>
+
+    <script>
+        const btnCasita = document.getElementById('btn-casita');
+        const tpSound = document.getElementById('tp-sound');
+        const btnVolver = document.getElementById('btn-volver');
+        const reSound = document.getElementById('re-sound');
+
+        btnCasita.addEventListener('click', function(e) {
+            e.preventDefault();
+            tpSound.currentTime = 0;
+            tpSound.play();
+            setTimeout(() => {
+                window.location.href = this.href;
+            }, 1200);
+        });
+
+        btnVolver.addEventListener('click', function(e) {
+            e.preventDefault();
+            reSound.currentTime = 0;
+            reSound.play();
+            setTimeout(() => {
+                window.location.href = this.href;
+            }, 1200);
+        });
+    </script>
+
+</body>
+</html>
